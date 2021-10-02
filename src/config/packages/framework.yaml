@@ -16,6 +16,9 @@ framework:
     #fragments: true
     php_errors:
         log: true
+    #either i've got a bug in docker env or symfony bug
+    #anyway it needs to be here for now :(
+    test: true
 
 when@test:
     framework:

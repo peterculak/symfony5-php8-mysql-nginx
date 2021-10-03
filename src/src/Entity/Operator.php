@@ -27,14 +27,6 @@ class Operator
     }
 
     /**
-     * @return string
-     */
-    public function operation(): string
-    {
-        return $this->operation;
-    }
-
-    /**
      * @return bool
      */
     public function isAddition(): bool

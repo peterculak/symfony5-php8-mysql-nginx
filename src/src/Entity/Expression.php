@@ -6,21 +6,6 @@ namespace App\Entity;
 class Expression
 {
     /**
-     * @var Operator
-     */
-    private Operator $operator;
-
-    /**
-     * @var Argument
-     */
-    private Argument $argumentA;
-
-    /**
-     * @var Argument
-     */
-    private Argument $argumentB;
-
-    /**
      * @param array $values
      * @param array $attributes
      * @return static
@@ -36,13 +21,10 @@ class Expression
             throw new \InvalidArgumentException();
         }
 
-        $argumentA = new Argument($values['a'], $attributes);
-        $argumentB = new Argument($values['b'], $attributes);
-
         return new self(
             new Operator($values['fn']),
-            $argumentA,
-            $argumentB
+            new Argument($values['a'], $attributes),
+            new Argument($values['b'], $attributes)
         );
     }
 
@@ -52,13 +34,10 @@ class Expression
      * @param Argument $argumentB
      */
     private function __construct(
-        Operator $operator,
-        Argument $argumentA,
-        Argument $argumentB,
+        private Operator $operator,
+        private Argument $argumentA,
+        private Argument $argumentB,
     ) {
-        $this->operator = $operator;
-        $this->argumentA = $argumentA;
-        $this->argumentB = $argumentB;
     }
 
     /**

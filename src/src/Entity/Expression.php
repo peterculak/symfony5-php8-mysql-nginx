@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Repository\FactRepository;
-
 class Expression
 {
     /**
@@ -88,26 +86,34 @@ class Expression
     }
 
     /**
-     * @param Security $security
-     * @param FactRepository $factRepository
-     * @return float
-     * @throws \Exception
+     * @return bool
      */
-    public function calculateForSecurity(Security $security, FactRepository $factRepository): float
+    public function isAddition(): bool
     {
-        $argumentValueA = $this->argumentA->getArgumentValue($security, $factRepository);
-        $argumentValueB = $this->argumentB->getArgumentValue($security, $factRepository);
+        return $this->operator->isAddition();
+    }
 
-        if ($this->operator->isAddition()) {
-            return $argumentValueA + $argumentValueB;
-        } else if ($this->operator->isDeletion()) {
-            return $argumentValueA - $argumentValueB;
-        } else if ($this->operator->isDivision()) {
-            return $argumentValueA / $argumentValueB;
-        } else if ($this->operator->isMultiplication()) {
-            return $argumentValueA * $argumentValueB;
-        }
+    /**
+     * @return bool
+     */
+    public function isDeletion(): bool
+    {
+        return $this->operator->isDeletion();
+    }
 
-        throw \LogicException('Should never reach this');
+    /**
+     * @return bool
+     */
+    public function isDivision(): bool
+    {
+        return $this->operator->isDivision();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMultiplication(): bool
+    {
+        return $this->operator->isMultiplication();
     }
 }

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Repository\FactRepository;
-
 /**
  * Represents an expression argument
  */
@@ -36,34 +34,6 @@ class Argument
             } else {
                 //attribute
                 return new Attribute($this->getAttributeId($this->value), $this->value);
-            }
-        }
-    }
-
-    /**
-     * @param Security $security
-     * @param FactRepository $repository
-     * @return float
-     * @throws \Exception
-     */
-    public function getArgumentValue(
-        Security $security,
-        FactRepository $repository
-    ): float {
-        $unwrapped = $this->unwrap();
-
-        if (is_float($unwrapped)) {
-            return $unwrapped;
-        } else {
-            if ($unwrapped instanceof Attribute) {
-                $fact = $repository->findOneBy([
-                    'attribute' => $unwrapped->getId(),
-                    'security' => $security->getId()
-                ]);
-
-                return $fact->getValue();
-            } else {
-                return $unwrapped->calculateForSecurity($security, $repository);
             }
         }
     }

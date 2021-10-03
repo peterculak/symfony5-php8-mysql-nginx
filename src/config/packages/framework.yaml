@@ -17,6 +17,9 @@ framework:
     php_errors:
         log: true
 
+    #if this is not here tests that use Kernel dont work its a symfony issue :(
+    test: true
+
 when@test:
     framework:
         test: true

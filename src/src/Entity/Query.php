@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Repository\FactRepository;
-
 /**
  * Represents a valid DSQ query
  */
@@ -34,15 +32,5 @@ class Query
     public function expression(): Expression
     {
         return $this->expression;
-    }
-
-    /**
-     * @param FactRepository $repository
-     * @return float
-     * @throws \Exception
-     */
-    public function result(FactRepository $repository): float
-    {
-        return $this->expression->calculateForSecurity($this->security, $repository);
     }
 }

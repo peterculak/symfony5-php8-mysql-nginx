@@ -13,7 +13,7 @@ use App\Repository\SecurityRepository;
 /**
  * Builds a valid DSL query
  */
-class QueryBuilder
+class QueryBuilder implements QueryBuilderInterface
 {
     /**
      * @param SecurityRepository $securityRepository

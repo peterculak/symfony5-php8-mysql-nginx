@@ -61,7 +61,7 @@ class EvaluateDslQuery implements EvaluateDsqlQueryInterface
             return $argumentValueA * $argumentValueB;
         }
 
-        throw \LogicException('Should never reach this');
+        throw new \LogicException('Should never reach this');
     }
 
     /**
